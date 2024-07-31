@@ -1,19 +1,10 @@
-import json
-import os
 import bitsandbytes as bnb
 import torch
-import torch.nn as nn
-import transformers
 from utils.func import print_trainable_parameters, generate_and_tokenize_prompt
-from utils.generate_prompt import generate_prompt_train
 from train import train
 from process_data import process_data_train
 from config import get_config
 
-from pprint import pprint
-from tqdm import tqdm
-from datasets import load_dataset, Dataset
-from huggingface_hub import notebook_login
 from peft import (
     LoraConfig,
     PeftConfig,

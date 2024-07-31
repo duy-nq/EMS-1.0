@@ -32,28 +32,16 @@ def main():
 
         try:
             result = generated_text[generated_text.find('Correct answer')+16]
-
         except:
             result = 'E'
 
-
         results.append(result)
 
+    df_test = parse_json_test_to_lists(config.dataset_test)
 
-    dic = parse_json_test_to_lists(config.dataset_test)
+    df_test['prediction', results]
 
-    list_id = dic["list_id"]
-    list_question = dic["list_question"]
-    list_A = dic["list_A"]
-    list_B = dic["list_B"]
-    list_C = dic["list_C"]
-    list_D = dic["list_D"]
-    list_answer = dic["list_answer"]
-
-    df_test = pd.DataFrame(list(zip(list_id, list_question, list_A, list_B, list_C, list_D, list_answer, results)),
-                          columns=['id', 'question', 'A', 'B', 'C', 'D', 'answer', 'result'])
-
-    correct = (df_test['answer'] == df_test['result']).sum()
+    correct = (df_test['answer'] == df_test['prediction']).sum()
 
     total = len(df_test)
 
