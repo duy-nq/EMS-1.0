@@ -18,7 +18,6 @@ def print_trainable_parameters(model):
 def generate_and_tokenize_prompt(tokenizer, question, choices, explanation, answer):
     full_prompt = generate_prompt_train(question, choices, explanation, answer)
 
-    print(full_prompt)
     tokenized_full_prompt = tokenizer(
         full_prompt,
         padding=True,
