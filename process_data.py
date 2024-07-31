@@ -1,9 +1,9 @@
 import json
-import tqdm
 from utils.func import generate_and_tokenize_prompt
-from datasets import load_dataset, Dataset
+from datasets import Dataset
 from utils.generate_prompt import generate_prompt_test, generate_few_shot_prompt
 import ast
+import pandas as pd
 
 def process_data_train(file_path, tokenizer):
 
@@ -32,10 +32,8 @@ def process_data_train(file_path, tokenizer):
 
     return choices_data
 
-
 def process_data_cot(file_path):
 
-    # Load the JSON file
     with open(file_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
 
@@ -56,7 +54,6 @@ def process_data_cot(file_path):
         test_samples.append(test_sample)
 
     return test_samples
-
 
 def process_data_few_shot_cot(file_path):
 
@@ -114,12 +111,13 @@ def parse_json_test_to_lists(file_name):
         list_question.append(question)
         list_answer.append(answer)
 
-    return {
-      "list_id":list_id,
-      "list_question":list_question,
-      "list_A":list_A,
-      "list_B":list_B,
-      "list_C":list_C,
-      "list_D":list_D,
-      "list_answer":list_answer
+    dict = {'id': list_id, 
+            'question': list_question, 
+            'option_a': list_A,
+            'option_b': list_B,
+            'option_c': list_C,
+            'option_d': list_D,
+            'answer': list_answer
     }
+
+    return pd.DataFrame(dict)
