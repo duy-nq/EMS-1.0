@@ -55,30 +55,6 @@ def process_data_cot(file_path):
 
     return test_samples
 
-def process_data_few_shot_cot(file_path):
-
-    # Load the JSON file
-    with open(file_path, 'r', encoding='utf-8') as f:
-        data = json.load(f)
-
-    test_samples = []
-
-    for sample in data["data"]:
-        try:
-            choices = sample['choices']
-        except:
-            break
-        question = sample['question']
-
-        choices = '\n'.join(choices)
-        test_sample = generate_few_shot_prompt(
-            question, choices
-        )
-
-        test_samples.append(test_sample)
-
-    return test_samples
-
 def parse_json_test_to_lists(file_name):
 
     with open(file_name) as json_file:
