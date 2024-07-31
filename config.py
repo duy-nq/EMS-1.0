@@ -3,7 +3,7 @@ import argparse
 def get_config():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--model', type=str, default='deepseek-ai/deepseek-math-7b-rl')
+    parser.add_argument('--model', type=str, default='microsoft/Phi-3-mini-4k-instruct')
     parser.add_argument('--max_new_tokens', type=int, default=1024)
     parser.add_argument('--temperature', type=float, default=0.3)
     parser.add_argument('--top_p', type=float, default=0.8)

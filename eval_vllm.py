@@ -1,9 +1,6 @@
 from vllm import LLM, SamplingParams
 from config import get_config
 from process_data import process_data_cot, parse_json_test_to_lists
-import pandas as pd
-import re
-import json
 
 def main():
 
