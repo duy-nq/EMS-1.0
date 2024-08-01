@@ -6,7 +6,7 @@ def main():
 
     config = get_config()
 
-    llm = LLM(model=f"{config.hf_account}/phi-3-mini-4k-math-vn",
+    llm = LLM(model=f"{config.hf_account}/{config.model_hf_name}",
               dtype='auto',
               enforce_eager=True,
               gpu_memory_utilization=0.99,
