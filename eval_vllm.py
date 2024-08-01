@@ -1,6 +1,7 @@
 from vllm import LLM, SamplingParams
 from config import get_config
 from process_data import process_data_cot, parse_json_test_to_lists
+import pandas as pd
 
 def main():
 
@@ -36,7 +37,7 @@ def main():
 
     df_test = parse_json_test_to_lists(config.dataset_test)
 
-    df_test['prediction', results]
+    df_test['prediction'] = pd.Series(results)
 
     correct = (df_test['answer'] == df_test['prediction']).sum()
 
