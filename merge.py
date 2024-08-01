@@ -34,7 +34,7 @@ def main():
         print("Loading and merging PEFT model...")
         peft_model_path = f"{config.hf_account}/{config.model_hf_name}"
         peft_model = PeftModel.from_pretrained(
-            base_model.to(DEVICE),
+            base_model,
             peft_model_path
         )
         merged_model = peft_model.merge_and_unload()
