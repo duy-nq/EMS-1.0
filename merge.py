@@ -15,7 +15,7 @@ def main():
             load_in_4bit=True,
             bnb_4bit_use_double_quant=True,
             bnb_4bit_quant_type="nf4",
-            bnb_4bit_compute_dtype=torch.float16
+            bnb_4bit_compute_dtype=torch.bfloat16
         )
 
         print("Loading base model...")
@@ -34,7 +34,7 @@ def main():
         print("Loading and merging PEFT model...")
         peft_model_path = f"{config.hf_account}/{config.model_hf_name}"
         peft_model = PeftModel.from_pretrained(
-            AutoModelForCausalLM.from_pretrained("microsoft/Phi-3-mini-4k-instruct").to(DEVICE),
+            base_model.to(DEVICE),
             peft_model_path
         )
         merged_model = peft_model.merge_and_unload()
