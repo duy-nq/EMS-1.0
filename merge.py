@@ -18,15 +18,6 @@ def main():
             bnb_4bit_compute_dtype=torch.bfloat16
         )
 
-        print("Loading base model...")
-        base_model = AutoModelForCausalLM.from_pretrained(
-            lora_config.base_model_name_or_path,
-            return_dict=True,
-            quantization_config=bnb_config,
-            device_map="auto",
-            trust_remote_code=True
-        )
-
         print("Loading tokenizer...")
         tokenizer = AutoTokenizer.from_pretrained(lora_config.base_model_name_or_path)
         tokenizer.pad_token = tokenizer.eos_token
