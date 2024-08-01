@@ -5,7 +5,7 @@ from utils.generate_prompt import generate_prompt_test, generate_few_shot_prompt
 import ast
 import pandas as pd
 
-def process_data_train(file_path, tokenizer):
+def process_data_train(file_path, tokenizer, mode: bool):
 
     with open(file_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
@@ -23,7 +23,7 @@ def process_data_train(file_path, tokenizer):
 
         choices = '\n'.join(choices)
         training_sample = generate_and_tokenize_prompt(
-            tokenizer, question, choices, explanation, answer
+            tokenizer, question, choices, explanation, answer, mode=mode
         )
 
         training_samples.append(training_sample)
@@ -32,7 +32,7 @@ def process_data_train(file_path, tokenizer):
 
     return choices_data
 
-def process_data_cot(file_path):
+def process_data_cot(file_path, mode: bool):
 
     with open(file_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
@@ -48,7 +48,7 @@ def process_data_cot(file_path):
 
         choices = '\n'.join(choices)
         test_sample = generate_prompt_test(
-            question, choices
+            question, choices, mode=mode
         )
 
         test_samples.append(test_sample)

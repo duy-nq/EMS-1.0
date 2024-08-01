@@ -27,6 +27,7 @@ def get_config():
     parser.add_argument('--push_to_hub', type=bool, default=True)
     parser.add_argument('--hf_account', type=str, default='duy-nq')
     parser.add_argument('--model_hf_name', type=str, default='phi-3-mini-4k-math-vn')
+    parser.add_argument('--mode', type=bool, default=False)
 
     args = parser.parse_args()
 

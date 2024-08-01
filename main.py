@@ -72,7 +72,7 @@ def main():
     generation_config.pad_token_id = tokenizer.eos_token_id
     generation_config.eos_token_id = tokenizer.eos_token_id
 
-    choices_data = process_data_train(config.dataset_train, tokenizer)
+    choices_data = process_data_train(config.dataset_train, tokenizer, config.mode)
 
     train(model, tokenizer, choices_data)
 

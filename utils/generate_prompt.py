@@ -13,6 +13,15 @@ Correct answer: {choice}
 Explantion: {explanation}
 """
 
+INST_TRAIN_ZEPHYR ="""<|system|>
+{sys_ins}</s>
+<|user|>
+{qna}</s>
+<|assistant|>
+Correct answer: {choice}
+Explantion: {explanation}
+"""
+
 INST_TEST = """<|system|>
 {sys_ins}<|end|>
 <|user|>
@@ -20,20 +29,34 @@ INST_TEST = """<|system|>
 <|assistant|>
 """
 
+INST_TEST_ZEPHYR = """<|system|>
+{sys_ins}</s>
+<|user|>
+{qna}</s>
+<|assistant|>
+"""
+
 QNA_TEMPLATE = """Question: {question}
 Options: {options}
 """
 
-def generate_prompt_train(question, options, explanation, answer):
+def generate_prompt_train(question, options, explanation, answer, mode: bool):
     qna = QNA_TEMPLATE.format(question=question, options=options)
     choice = answer.split('. ')[0]
-        
-    return INST_TRAIN.format(sys_ins=SYS_INS, qna = qna, choice=choice, explanation=explanation).strip()
 
-def generate_prompt_test(question, choices):
+    if mode == 0:  
+        return INST_TRAIN.format(sys_ins=SYS_INS, qna = qna, choice=choice, explanation=explanation).strip()
+    else:
+        return INST_TRAIN_ZEPHYR.format(sys_ins=SYS_INS, qna = qna, choice=choice, explanation=explanation).strip()
+
+def generate_prompt_test(question, choices, mode: bool):
     qna = QNA_TEMPLATE.format(question=question, options=choices)
     
-    return INST_TEST.format(sys_ins=SYS_INS, qna=qna).strip()
+    if mode == 0:
+        return INST_TEST.format(sys_ins=SYS_INS, qna=qna).strip()
+    else:
+        return INST_TEST_ZEPHYR.format(sys_ins=SYS_INS, qna=qna).strip()
+
 
 def generate_few_shot_prompt(question, choices):
  

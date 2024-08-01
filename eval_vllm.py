@@ -16,7 +16,7 @@ def main():
               kv_cache_dtype="fp8",
               tensor_parallel_size=1)
     
-    test_samples = process_data_cot(config.dataset_test)
+    test_samples = process_data_cot(config.dataset_test, config.mode)
 
     sampling_params = SamplingParams(temperature=config.temperature, top_p=config.top_p, max_tokens=config.max_new_tokens)
 

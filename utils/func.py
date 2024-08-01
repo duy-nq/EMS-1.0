@@ -15,8 +15,8 @@ def print_trainable_parameters(model):
         f"trainable params: {trainable_params} || all params: {all_param} || trainables%: {100 * trainable_params / all_param}"
     )
 
-def generate_and_tokenize_prompt(tokenizer, question, choices, explanation, answer):
-    full_prompt = generate_prompt_train(question, choices, explanation, answer)
+def generate_and_tokenize_prompt(tokenizer, question, choices, explanation, answer, mode: bool):
+    full_prompt = generate_prompt_train(question, choices, explanation, answer, mode=mode)
 
     tokenized_full_prompt = tokenizer(
         full_prompt,
