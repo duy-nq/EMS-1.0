@@ -34,7 +34,7 @@ def main():
         print("Loading and merging PEFT model...")
         peft_model_path = f"{config.hf_account}/{config.model_hf_name}"
         peft_model = PeftModel.from_pretrained(
-            AutoModelForCausalLM.from_pretrained("microsoft/Phi-3-mini-4k-instruct").to(DEVICE),
+            AutoModelForCausalLM.from_pretrained("microsoft/Phi-3-mini-4k-instruct", torch_dtype=torch.float16).to(DEVICE),
             peft_model_path
         )
         merged_model = peft_model.merge_and_unload()
