@@ -39,13 +39,13 @@ def main():
         )
         merged_model = peft_model.merge_and_unload()
 
-        MODEL = f"{config.hf_account}/phi-3-mini-4k-merge-v1"
+        MODEL = f"{config.hf_account}/phi-3-mini-4k-merge-v2"
         print("Saving and pushing merged model...")
-        merged_model.save_pretrained("phi-3-mini-4k-merge-v1")
+        merged_model.save_pretrained("phi-3-mini-4k-merge-v2")
         merged_model.push_to_hub(MODEL, use_auth_token=True)
 
         print("Saving and pushing tokenizer...")
-        tokenizer.save_pretrained("phi-3-mini-4k-merge-v1")
+        tokenizer.save_pretrained("phi-3-mini-4k-merge-v2")
         tokenizer.push_to_hub(MODEL, use_auth_token=True)
 
         print("Process completed successfully.")

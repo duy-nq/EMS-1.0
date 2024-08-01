@@ -8,7 +8,7 @@ def main():
     config = get_config()
 
     llm = LLM(model=f"{config.hf_account}/{config.model_hf_name}",
-              dtype='float16',
+              dtype='auto',
               enforce_eager=True,
               gpu_memory_utilization=0.99,
               swap_space=4,
