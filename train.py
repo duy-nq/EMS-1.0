@@ -1,12 +1,13 @@
-import transformers
+import wandb
 from config import get_config
-
+from transformers import TrainingArguments, Trainer, DataCollatorForLanguageModeling
 
 def train(model, tokenizer, choices_data):
 
     config = get_config()
 
-    training_args = transformers.TrainingArguments(
+
+    training_args = TrainingArguments(
         per_device_train_batch_size=config.per_device_train_batch_size,
         gradient_accumulation_steps=config.gradient_accumulation_steps,
         num_train_epochs=config.num_train_epochs,
@@ -18,14 +19,21 @@ def train(model, tokenizer, choices_data):
         optim=config.optim,
         lr_scheduler_type=config.lr_scheduler_type,
         warmup_ratio=config.warmup_ratio,
+        evaluation_strategy="epoch",
+        logging_dir='./logs', 
+        report_to="wandb",
+        load_best_model_at_end=True
     )
 
-    trainer = transformers.Trainer(
+
+    trainer = Trainer(
         model=model,
         train_dataset=choices_data,
         args=training_args,
-        data_collator=transformers.DataCollatorForLanguageModeling(tokenizer, mlm=False),
+        data_collator=DataCollatorForLanguageModeling(tokenizer, mlm=False),
     )
 
     model.config.use_cache = False
     trainer.train()
+
+    wandb.finish()
