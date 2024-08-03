@@ -1,7 +1,7 @@
 import torch
 from utils.func import print_trainable_parameters
 from train import train
-from process_data import process_data_train, process_data_cot
+from process_data import process_data_train, process_data_val
 from config import get_config
 
 from peft import (
@@ -72,7 +72,7 @@ def main():
     generation_config.eos_token_id = tokenizer.eos_token_id
 
     choices_data = process_data_train(config.dataset_train, tokenizer, config.mode)
-    val_data = process_data_train(config.dataset_test, tokenizer, config.mode)
+    val_data = process_data_val(config.dataset_test, tokenizer, config.mode)
 
     train(model, tokenizer, choices_data, val_data)
 

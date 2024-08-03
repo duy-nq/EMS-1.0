@@ -1,0 +1,34 @@
+{
+    "__count__": 4,
+    "data":
+    [
+        {
+            "id": "1",
+            "question": "Một người bán hàng bỏ ra 80,000 đồng tiền vốn và bị lỗ 6%. Để tính số tiền lỗ ta phải tính",
+            "choices": "['A. 80,000 : 6', 'B. 80,000 x 6', 'C. 80,000 : (6 x 100)', 'D. (80,000 x 6) : 100']",
+            "explanation": "Theo đề bài, số tiền lỗ bằng 6% của 80 000 đồng . Để tìm số tiền lỗ ta có thể lấy 80 000 chia cho 100 rồi nhân với 6 (tức là 80 000 : 100 × 6) hoặc lấy 80000 nhân với 6 rồi chia cho 100 (tức là 80 000 × 6 : 100).",
+            "answer": "D. (80,000 x 6) : 100"
+        },
+        {
+            "id": "2",
+            "question": "“1 giờ 25 phút = ……..phút”. Số thích hợp điền vào chỗ chấm là:",
+            "choices": "['A. 85', 'B. 125', 'C. 49', 'D. 1,25']",
+            "explanation": "1 giờ = 60 phút suy ra 1 giờ 25 phút = 60 + 25 = 85 phút.",
+            "answer": "A. 85"
+        },
+        {
+            "id": "3",
+            "question": "“2 thế kỉ = ……..năm”. Số thích hợp điền vào chỗ chấm là:",
+            "choices": "['A. 20', 'B. 200', 'C. 100', 'D. 1000']",
+            "explanation": "1 thế kỉ là 100 năm nên 2 thế kỉ = 200 năm.",
+            "answer": "B. 200"
+        },
+        {
+            "id": "4",
+            "question": "“3 tấn 5kg = ……tấn”. Số thích hợp điền vào chỗ chấm là:",
+            "choices": "['A. 3005', 'B. 305', 'C. 30,05', 'D. 3,005']",
+            "explanation": "“1 tấn bằng 1000 kg vậy nên 3 tấn 5kg = 3 x 1000 + 5 = 3,005 tấn”.",
+            "answer": "D. 3,005"
+        }
+    ]
+}

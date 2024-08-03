@@ -1,5 +1,5 @@
 import json
-from utils.func import generate_and_tokenize_prompt
+from utils.func import generate_and_tokenize_prompt, generate_and_tokenize_prompt_for_val
 from datasets import Dataset
 from utils.func import generate_prompt_test
 import ast
@@ -29,6 +29,30 @@ def process_data_train(file_path, tokenizer, mode: bool):
         training_samples.append(training_sample)
 
     choices_data = Dataset.from_list(training_samples)
+
+    return choices_data
+
+def process_data_val(file_path, tokenizer, mode: bool):
+
+    with open(file_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+
+    val_samples = []
+
+    for sample in data["data"]:
+        try:
+            choices = ast.literal_eval(sample['choices'])
+        except:
+            break
+        question = sample['question']
+        choices = '\n'.join(choices)
+        val_sample = generate_and_tokenize_prompt_for_val(
+            tokenizer, question, choices, mode=mode
+        )
+
+        val_samples.append(val_sample)
+
+    choices_data = Dataset.from_list(val_samples)
 
     return choices_data
 

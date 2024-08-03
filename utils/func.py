@@ -17,12 +17,21 @@ def print_trainable_parameters(model):
     )
 
 def compute_metrics(eval_pred):
-    logits, labels = eval_pred
-    predictions = np.argmax(logits, axis=-1)
-    return {"accuracy": np.mean(predictions == labels)}
+    generated_text, _ = eval_pred
 
 def generate_and_tokenize_prompt(tokenizer, question, choices, explanation, answer, mode: bool):
     full_prompt = generate_prompt_train(question, choices, explanation, answer, mode=mode)
+
+    tokenized_full_prompt = tokenizer(
+        full_prompt,
+        padding=True,
+        truncation=True
+    )
+
+    return tokenized_full_prompt
+
+def generate_and_tokenize_prompt_for_val(tokenizer, question, choices, mode: bool):
+    full_prompt = generate_prompt_test(question, choices, mode=mode)
 
     tokenized_full_prompt = tokenizer(
         full_prompt,

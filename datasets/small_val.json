@@ -1,0 +1,49 @@
+{
+    "__count__": 4,
+    "data": [
+       {
+          "id": "2-001",
+          "question": "Kết quả của 1,05 m^{3} = …….. dm^{3} ?",
+          "choices": [
+             "A. 105",
+             "B. 1005",
+             "C. 1050",
+             "D. 1500"
+          ],
+          "answer": "C. 1050"
+       },
+       {
+          "id": "2-002",
+          "question": "Số thích hợp điền vào chỗ trống 95m^{2} 7dm^{2} = . . . m^{2} là:",
+          "choices": [
+             "A. 957",
+             "B. 95,7",
+             "C. 95,07",
+             "D. 95,007"
+          ],
+          "answer": "B. 95,7"
+       },
+       {
+          "id": "2-003",
+          "question": "302 được viết thành tổng là:",
+          "choices": [
+             "A. 300 + 20",
+             "B. 300 + 02",
+             "C. 300 + 10 + 2",
+             "D. 30 + 10 +2"
+          ],
+          "answer": "B. 300 + 02"
+       },
+       {
+          "id": "2-004",
+          "question": "Hãy đổi giờ thành phút như sau: 3 giờ 15 phút = ....phút",
+          "choices": [
+             "A. 120 phút",
+             "B. 195 phút",
+             "C. 215 phút",
+             "D. 205 phút"
+          ],
+          "answer": "B. 195 phút"
+       }
+    ]
+}
