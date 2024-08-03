@@ -1,11 +1,15 @@
 import wandb
 from config import get_config
 from transformers import TrainingArguments, Trainer, DataCollatorForLanguageModeling
+from utils.func import compute_metrics
+import os
 
-def train(model, tokenizer, choices_data):
-
+def train(model, tokenizer, choices_data, val_data):
     config = get_config()
 
+    os.environ["WANDB_PROJECT"]=config.wandb_proj
+    os.environ["WANDB_LOG_MODEL"]="true"
+    os.environ["WANDB_WATCH"]="false"
 
     training_args = TrainingArguments(
         per_device_train_batch_size=config.per_device_train_batch_size,
@@ -22,14 +26,16 @@ def train(model, tokenizer, choices_data):
         evaluation_strategy="epoch",
         logging_dir='./logs', 
         report_to="wandb",
-        load_best_model_at_end=True
+        load_best_model_at_end=True,
+        metric_for_best_model=compute_metrics,
+        run_name=config.run_name
     )
-
 
     trainer = Trainer(
         model=model,
-        train_dataset=choices_data,
         args=training_args,
+        train_dataset=choices_data,
+        eval_dataset=val_data,
         data_collator=DataCollatorForLanguageModeling(tokenizer, mlm=False),
     )
 

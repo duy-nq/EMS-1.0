@@ -28,6 +28,8 @@ def get_config():
     parser.add_argument('--hf_account', type=str, default='duy-nq')
     parser.add_argument('--model_hf_name', type=str, default='phi-3-mini-4k-math-vn')
     parser.add_argument('--mode', type=bool, default=False)
+    parser.add_argument('--wandb_proj', type=str, default='project-phi-3-mini-4k')
+    parser.add_argument('--run_name', type=str, default='model-training-obs')
 
     args = parser.parse_args()
 

@@ -1,4 +1,5 @@
 from utils.generate_prompt import generate_prompt_train
+import numpy as np
 
 def print_trainable_parameters(model):
     """
@@ -14,6 +15,11 @@ def print_trainable_parameters(model):
     print(
         f"trainable params: {trainable_params} || all params: {all_param} || trainables%: {100 * trainable_params / all_param}"
     )
+
+def compute_metrics(eval_pred):
+    logits, labels = eval_pred
+    predictions = np.argmax(logits, axis=-1)
+    return {"accuracy": np.mean(predictions == labels)}
 
 def generate_and_tokenize_prompt(tokenizer, question, choices, explanation, answer, mode: bool):
     full_prompt = generate_prompt_train(question, choices, explanation, answer, mode=mode)

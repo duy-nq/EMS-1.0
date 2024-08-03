@@ -1,8 +1,7 @@
-import bitsandbytes as bnb
 import torch
-from utils.func import print_trainable_parameters, generate_and_tokenize_prompt
+from utils.func import print_trainable_parameters
 from train import train
-from process_data import process_data_train
+from process_data import process_data_train, process_data_cot
 from config import get_config
 
 from peft import (
@@ -73,8 +72,9 @@ def main():
     generation_config.eos_token_id = tokenizer.eos_token_id
 
     choices_data = process_data_train(config.dataset_train, tokenizer, config.mode)
+    val_data = process_data_cot(config.dataset_test, config.mode)
 
-    train(model, tokenizer, choices_data)
+    train(model, tokenizer, choices_data, val_data)
 
     PEFT_MODEL = f"{config.hf_account}/{config.model_hf_name}"
 
