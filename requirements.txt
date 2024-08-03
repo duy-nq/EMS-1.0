@@ -2,3 +2,4 @@ bitsandbytes
 peft
 datasets
 wandb
+flash-attn
