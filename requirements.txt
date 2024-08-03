@@ -1,3 +1,4 @@
 bitsandbytes
 peft
 datasets
+wandb
