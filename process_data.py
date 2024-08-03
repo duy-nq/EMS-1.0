@@ -28,7 +28,7 @@ def process_data_train(file_path, tokenizer, mode: bool):
 
         training_samples.append(training_sample)
 
-        choices_data = Dataset.from_list(training_samples)
+    choices_data = Dataset.from_list(training_samples)
 
     return choices_data
 
