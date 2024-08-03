@@ -57,7 +57,6 @@ def generate_prompt_test(question, choices, mode: bool):
     else:
         return INST_TEST_ZEPHYR.format(sys_ins=SYS_INS, qna=qna).strip()
 
-
 def generate_few_shot_prompt(question, choices):
  
     return f"""

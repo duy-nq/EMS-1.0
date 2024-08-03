@@ -1,4 +1,4 @@
-from utils.generate_prompt import generate_prompt_train
+from utils.generate_prompt import generate_prompt_train, generate_prompt_test
 import numpy as np
 
 def print_trainable_parameters(model):
