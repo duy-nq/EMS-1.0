@@ -24,6 +24,7 @@ def train(model, tokenizer, choices_data, val_data):
         lr_scheduler_type=config.lr_scheduler_type,
         warmup_ratio=config.warmup_ratio,
         evaluation_strategy="epoch",
+        save_strategy='epoch',
         logging_dir='./logs', 
         report_to="wandb",
         load_best_model_at_end=True,
