@@ -28,7 +28,8 @@ def train(model, tokenizer, choices_data, val_data):
         logging_dir='./logs', 
         report_to="wandb",
         load_best_model_at_end=True,
-        metric_for_best_model=compute_metrics,
+        metric_for_best_model="accuracy",
+        greater_is_better=True,
         run_name=config.run_name
     )
 
@@ -37,6 +38,7 @@ def train(model, tokenizer, choices_data, val_data):
         args=training_args,
         train_dataset=choices_data,
         eval_dataset=val_data,
+        compute_metrics=compute_metrics,
         data_collator=DataCollatorForLanguageModeling(tokenizer, mlm=False),
     )
 
