@@ -27,6 +27,7 @@ def get_config():
     parser.add_argument('--push_to_hub', type=bool, default=True)
     parser.add_argument('--hf_account', type=str, default='duy-nq')
     parser.add_argument('--model_hf_name', type=str, default='phi-3-mini-4k-math-vn')
+    parser.add_argument('--merge_model_name', type=str, default='merge')
     parser.add_argument('--mode', type=bool, default=False)
     parser.add_argument('--wandb_proj', type=str, default='project-phi-3-mini-4k')
     parser.add_argument('--run_name', type=str, default='model-training-obs')

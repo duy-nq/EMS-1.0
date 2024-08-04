@@ -25,18 +25,18 @@ def main():
         print("Loading and merging PEFT model...")
         peft_model_path = f"{config.hf_account}/{config.model_hf_name}"
         peft_model = PeftModel.from_pretrained(
-            AutoModelForCausalLM.from_pretrained("microsoft/Phi-3-mini-4k-instruct", torch_dtype=torch.bfloat16).to(DEVICE),
+            AutoModelForCausalLM.from_pretrained(config.model, torch_dtype=torch.bfloat16).to(DEVICE),
             peft_model_path
         )
         merged_model = peft_model.merge_and_unload()
 
-        MODEL = f"{config.hf_account}/phi-3-mini-4k-merge-v2"
+        MODEL = f"{config.hf_account}/{config.merge_model_name}"
         print("Saving and pushing merged model...")
-        merged_model.save_pretrained("phi-3-mini-4k-merge-v2")
+        merged_model.save_pretrained(config.merge_model_name)
         merged_model.push_to_hub(MODEL, use_auth_token=True)
 
         print("Saving and pushing tokenizer...")
-        tokenizer.save_pretrained("phi-3-mini-4k-merge-v2")
+        tokenizer.save_pretrained(config.merge_model_name)
         tokenizer.push_to_hub(MODEL, use_auth_token=True)
 
         print("Process completed successfully.")
