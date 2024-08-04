@@ -3,7 +3,7 @@ from config import get_config
 from transformers import TrainingArguments, Trainer, DataCollatorForLanguageModeling
 import os
 
-def train(model, tokenizer, choices_data, val_data, func):
+def train(model, tokenizer, choices_data):
     config = get_config()
 
     os.environ["WANDB_PROJECT"]=config.wandb_proj
@@ -22,12 +22,8 @@ def train(model, tokenizer, choices_data, val_data, func):
         optim=config.optim,
         lr_scheduler_type=config.lr_scheduler_type,
         warmup_ratio=config.warmup_ratio,
-        remove_unused_columns=False,
-        evaluation_strategy="epoch",
-        save_strategy='epoch',
         logging_dir='./logs', 
         report_to="wandb",
-        load_best_model_at_end=True,
         run_name=config.run_name
     )
 

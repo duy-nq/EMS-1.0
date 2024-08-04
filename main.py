@@ -92,9 +92,8 @@ def main():
     generation_config.eos_token_id = tokenizer.eos_token_id
 
     choices_data = process_data_train(config.dataset_train, tokenizer, config.mode)
-    val_data = process_data_val(config.dataset_test, tokenizer, config.mode)
 
-    train(model, tokenizer, choices_data, val_data, compute_metrics)
+    train(model, tokenizer, choices_data)
 
     PEFT_MODEL = f"{config.hf_account}/{config.model_hf_name}"
 
