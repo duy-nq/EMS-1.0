@@ -46,9 +46,12 @@ def process_data_val(file_path, tokenizer, mode: bool):
             break
         question = sample['question']
         choices = '\n'.join(choices)
-        val_sample = generate_and_tokenize_prompt_for_val(
-            tokenizer, question, choices, mode=mode
-        )
+        answer = str(sample['answer']).strip()
+
+        val_sample = {
+            'qna': generate_and_tokenize_prompt_for_val(tokenizer, question, choices, mode=mode),
+            'answer': answer
+        }
 
         val_samples.append(val_sample)
 
