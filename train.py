@@ -22,6 +22,7 @@ def train(model, tokenizer, choices_data, val_data, func):
         optim=config.optim,
         lr_scheduler_type=config.lr_scheduler_type,
         warmup_ratio=config.warmup_ratio,
+        remove_unused_columns=False,
         evaluation_strategy="epoch",
         save_strategy='epoch',
         logging_dir='./logs', 
