@@ -1,7 +1,7 @@
 import json
 from utils.func import generate_and_tokenize_prompt, generate_and_tokenize_prompt_for_val
 from datasets import Dataset
-from utils.func import generate_prompt_test
+from utils.generate_prompt import generate_prompt_test
 import ast
 import pandas as pd
 
