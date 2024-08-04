@@ -50,7 +50,7 @@ def process_data_val(file_path, tokenizer, mode: bool):
 
         val_sample = {
             'qna': generate_and_tokenize_prompt_for_val(tokenizer, question, choices, mode=mode),
-            'answer': answer
+            'labels': answer
         }
 
         val_samples.append(val_sample)
