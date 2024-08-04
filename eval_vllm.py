@@ -45,6 +45,8 @@ def main():
 
     accuracy = correct / total
 
+    df_test.to_csv('final.csv', encoding='utf-8')
+
     print("Accuracy:", accuracy)
 
 if __name__ == '__main__':
