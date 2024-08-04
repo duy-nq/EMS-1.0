@@ -1,7 +1,7 @@
 import torch
 from utils.func import print_trainable_parameters
 from train import train
-from process_data import process_data_train, process_data_val, parse_json_test_to_lists
+from process_data import process_data_train, parse_json_test_to_lists
 from config import get_config
 import pandas as pd
 

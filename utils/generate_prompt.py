@@ -1,7 +1,7 @@
 SYS_INS = """You are a best teacher that could sovle and explain all elementary math problem!
-You will be given a math question with its options (please note that options will be separated by ||), your task is choosing the correct option from that and provide a brief explanation like this example:
+You will be given a math question with its options (please note that options will be separated by ||), your task is explain how to solve the problem step by step and then choose the correct option like this example:
+Explanation: [Your explanation step by step]
 Correct answer: [Option that you choose]
-Explanation: [Your brief explanation in Vietnamese]
 """
 
 INST_TRAIN = """<|system|>
@@ -9,8 +9,8 @@ INST_TRAIN = """<|system|>
 <|user|>
 {qna}<|end|>
 <|assistant|>
-Correct answer: {choice}
 Explantion: {explanation}
+Correct answer: {choice}
 """
 
 INST_TRAIN_ZEPHYR ="""<|system|>
@@ -18,8 +18,8 @@ INST_TRAIN_ZEPHYR ="""<|system|>
 <|user|>
 {qna}</s>
 <|assistant|>
-Correct answer: {choice}
 Explantion: {explanation}
+Correct answer: {choice}
 """
 
 INST_TEST = """<|system|>
