@@ -3,3 +3,4 @@ peft
 datasets
 wandb
 flash-attn
+vllm
