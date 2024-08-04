@@ -8,7 +8,7 @@ def main():
     config = get_config()
 
     llm = LLM(model=f"{config.hf_account}/{config.model_hf_name}",
-              dtype='auto',
+              dtype='float16',
               enforce_eager=True,
               gpu_memory_utilization=0.99,
               swap_space=4,
@@ -23,6 +23,7 @@ def main():
     outputs = llm.generate(test_samples, sampling_params)
 
     results = []
+    full_answer = []
 
     for output in outputs:
         prompt = output.prompt
@@ -34,10 +35,12 @@ def main():
             result = 'E'
 
         results.append(result)
+        full_answer.append(generated_text)
 
     df_test = parse_json_test_to_lists(config.dataset_test)
 
     df_test['prediction'] = pd.Series(results)
+    df_test['full_answer'] = pd.Series(full_answer)
 
     correct = (df_test['answer'] == df_test['prediction']).sum()
 
