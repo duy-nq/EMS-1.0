@@ -1,10 +1,9 @@
 import wandb
 from config import get_config
 from transformers import TrainingArguments, Trainer, DataCollatorForLanguageModeling
-from utils.func import compute_metrics
 import os
 
-def train(model, tokenizer, choices_data, val_data):
+def train(model, tokenizer, choices_data, val_data, func):
     config = get_config()
 
     os.environ["WANDB_PROJECT"]=config.wandb_proj
@@ -38,7 +37,7 @@ def train(model, tokenizer, choices_data, val_data):
         args=training_args,
         train_dataset=choices_data,
         eval_dataset=val_data,
-        compute_metrics=compute_metrics,
+        compute_metrics=func,
         data_collator=DataCollatorForLanguageModeling(tokenizer, mlm=False),
     )
 

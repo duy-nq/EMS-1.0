@@ -1,22 +1,42 @@
 import torch
 from utils.func import print_trainable_parameters
 from train import train
-from process_data import process_data_train, process_data_val
+from process_data import process_data_train, process_data_val, parse_json_test_to_lists
 from config import get_config
+import pandas as pd
 
 from peft import (
     LoraConfig,
-    PeftConfig,
-    PeftModel,
     get_peft_model,
     prepare_model_for_kbit_training
 )
 from transformers import (
-    AutoConfig,
     AutoModelForCausalLM,
     AutoTokenizer,
     BitsAndBytesConfig
 )
+
+def compute_metrics(eval_pred):
+    config = get_config()
+    
+    tokenizer = AutoTokenizer.from_pretrained(config.model)
+    tokenizer.pad_token = tokenizer.eos_token
+
+    generated_text, _ = eval_pred
+
+    decoded_predictions = tokenizer.batch_decode(generated_text, skip_special_tokens=True)
+
+    preds = [pred[pred.find('Correct answer')+16] for pred in decoded_predictions]
+
+    df_test = parse_json_test_to_lists(config.dataset_test)
+    df_test['prediction'] = pd.Series(preds)
+
+    correct = (df_test['answer'] == df_test['prediction']).sum()
+    total = len(df_test)
+
+    accuracy = correct / total
+
+    return {'accuracy': accuracy}
 
 def main():
 
@@ -74,7 +94,7 @@ def main():
     choices_data = process_data_train(config.dataset_train, tokenizer, config.mode)
     val_data = process_data_val(config.dataset_test, tokenizer, config.mode)
 
-    train(model, tokenizer, choices_data, val_data)
+    train(model, tokenizer, choices_data, val_data, compute_metrics)
 
     PEFT_MODEL = f"{config.hf_account}/{config.model_hf_name}"
 
